@@ -10,4 +10,18 @@
 # grade(15, true)   # => "B"
 
 def grade(num_books, reads_books)
+
+	grades = ["A","B","C","D"]
+
+	case num_books
+	when 0..9 then
+		grade = 3
+	when 10 .. 20 then
+		grade = 2
+	when 21..100000 then
+		grade = 1
+	end
+
+	reads_books ? grades[grade-1] : grades[grade]
+
 end

@@ -1,3 +1,14 @@
+# My tests below
+
+describe 'Session 1 Challenges - 1' do
+
+  it "should return 50 when passed 14" do
+    arithmetic1(14).should == 50
+  end
+end
+
+=begin -- Official rspec file below --
+
 describe 'arithmetic1' do
 
   it 'should return 30 when passed 10' do
@@ -17,3 +28,4 @@ describe 'arithmetic1' do
   end
   
 end
+=end

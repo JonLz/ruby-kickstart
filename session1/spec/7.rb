@@ -1,6 +1,6 @@
 describe 'pirates_say_arrrrrrrrr' do
   
-  it 'should return "eeu" when given "are you really learning Ruby?"' do
+  it 'should return "eenu" when given "are you really learning Ruby?"' do
     pirates_say_arrrrrrrrr("are you really learning Ruby?").should == "eenu"
   end
   
