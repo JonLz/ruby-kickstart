@@ -14,3 +14,22 @@
 # prime_chars? ['ab', 'cd']       # => false
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
+
+
+def prime_chars?(array)
+
+	# No array no cry
+	return false if array == []
+
+	# Get the prime number to test!
+	prime = array.map { |char| char.length }.reduce(:+)
+
+	# Anything less than 2 is not a prime number (0, 1)
+	return false if prime < 2 
+
+	# Test for non primality 
+	(2..(prime/2)).each { |i| return false if (prime % i) == 0 }
+		
+	# Number must be a prime
+	return true
+end

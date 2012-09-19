@@ -64,3 +64,57 @@
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
 require 'date'
+
+class User
+	attr_accessor :username, :blogs
+
+	# each new user has a username and an empty array of blogs
+	def initialize(username)
+		self.username, self.blogs = username, Array.new
+	end
+
+	# create a blog object for the current user
+	def add_blog(date, text)
+		Blog.new date, self, text
+	end
+
+	# return an array of Blog objects sorted by newest date
+	def blogs
+		 @blogs.sort! { |blog1, blog2| blog2.date <=> blog1.date }
+	end
+
+end
+
+class Blog
+	attr_accessor :date, :user, :text
+
+	# Blogs are only created for users, so each blog belongs to a
+	# user so we add it to the users blogroll
+	def initialize(date, user, text)
+		self.date, self.user, self.text = date, user, text
+		user.blogs << self
+	end
+
+	# prints out the first 10 words (or all if <10) of the blog object
+	def summary
+		summary = ""
+		get = @text.split(/ /)
+		get.each_index do |word|
+			summary << get[word] << " " if word < 10
+		end
+		summary.strip
+	end
+
+	# displays the entire blog entry
+	def display_entry
+		puts user.username + " " + date.to_s
+		puts text
+	end
+
+	# test for blog entry equality if date, user, text all match
+	def ==(other)
+		self.date == other.date && 
+		self.user == other.user && 
+		self.text == other.text
+	end
+end

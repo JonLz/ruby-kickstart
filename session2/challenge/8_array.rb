@@ -5,3 +5,9 @@
 # got_three? ['a', 'a', 'b']  # => false
 # got_three? ['a', 'a', 'a']  # => true
 # got_three? [1, 2, 1, 1]     # => false
+
+# Got almost the exact same code as the solution! :)
+def got_three? (triplets)
+	triplets.each_cons(3) { |a, b, c| return true if a == b && b == c }
+	return false
+end

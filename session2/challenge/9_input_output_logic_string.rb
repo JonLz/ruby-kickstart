@@ -23,8 +23,22 @@
 # GRANDMA:  HUH?! SPEAK UP, SONNY!
 # USER:     BYE
 
+# String class to check caps
+class String
+	def caps?
+		self == self.upcase ? true : false
+	end
+end
+
+# Loop unless BYE is received
 def deaf_grandma
-  
+  while (input = gets.chomp) && ( input !~ /BYE/)
+   	if input.caps? && input != ""
+   		puts "NO, NOT SINCE 1938!" 
+   	else
+   		puts "HUH?! SPEAK UP, SONNY!"
+   	end
+  end
 end
 
 

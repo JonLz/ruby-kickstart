@@ -8,3 +8,20 @@
 # alternate_words("Lorem ipsum dolor sit amet.")  # => ["Lorem", "dolor", "amet"]
 # alternate_words("Can't we all get along?")      # => ["Can't", "all", "along"]
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
+
+# Add a method to remove unwanted punctuation and whitespace
+class String
+	def clean
+		cleaned = self.gsub(/[!@$#%^&*()-=_+\[\]:;,.\/<>?\|]/, ' ').squeeze(" ")
+	end
+end
+
+# Clean the string, arrayify it, and then push every other character to the return array
+def alternate_words(string)
+	ary = []
+	word_ary = string.clean.split(/ /)
+	word_ary.each_index do |idx|
+		ary.push(word_ary[idx]) if idx.even?
+	end
+	ary
+end

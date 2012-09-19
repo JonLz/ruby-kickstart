@@ -8,3 +8,14 @@
 # staircase 4  # => { 1 => [], 3 => [2] }
 # staircase 5  # => { 1 => [], 3 => [2], 5 =>[2, 4] }
 
+# first try :)
+def staircase(n)
+	return nil if n < 1
+	hash = Hash.new
+
+	1.upto(n).each do |num|
+		if num.odd?
+			hash[num] = 1.upto(num).select { |i| i.even? }
+		end
+	hash
+end
