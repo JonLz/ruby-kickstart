@@ -28,5 +28,23 @@
 # shared [1,2,:c] , ['a','b',:c]        # => [ { 1=>[true,nil] , 2=>[true,nil] , 'a'=>[nil,true] , 'b'=>[nil,true] , :c=>[true,true] } , [:c] ]
 # shared [1,2,3] , [3,2,1]              # => [ { 1=>[true,true] , 2=>[true,true] , 3=>[true,true] } , [1,2,3] ]
 
-def shared( a , b )
+
+def shared(a,b)
+	# new hash with default action of inserting elements from a/b
+	hash = Hash.new do |hash, key|
+	  hash[key] = Array.new
+	  if a.include?(key) then hash[key] << true else hash[key] << nil end
+	  if b.include?(key) then hash[key] << true else hash[key] << nil end
+	end
+	
+	# fill in the true values in our hash
+	# this step is overkill..
+	a.each { |item| hash[item][0] = true }
+	b.each { |item| hash[item][1] = true }
+	
+	# fill in the array with the unions 
+	array = Array.new
+	hash.each { |k,v| array << k if v == [true, true] }
+
+	return hash, array.sort
 end

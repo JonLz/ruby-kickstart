@@ -17,3 +17,14 @@
 # match_maker true  , true  , true, true, nil     # => [false, true]
 # match_maker true  , true  , true, 0, nil        # => [false, true]
 
+def match_maker(test, *truths)
+	array = Array.new
+	truths.each_slice(2) do |first, second|
+			if !!first == !!second then
+				test == false ? array << true : array << false
+			else
+				test == false ? array << false : array << true
+			end
+		end
+	array
+end

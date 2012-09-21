@@ -27,11 +27,17 @@
 
 class Person
   
-  attr_accessor :name
+  attr_accessor :name, :quote, :age
   
-  def initialize( &initializer )
-    @initializer = initializer
-    initializer.call self
+  def initialize(options= {}, &initializer)
+    options.each do |var,val| 
+    	instance_variable_set("@#{var}", val)
+    end
+    
+    if initializer then
+	    @initializer = initializer
+	    initializer.call self
+	end
   end
   
   def reinit

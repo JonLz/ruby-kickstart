@@ -22,9 +22,9 @@ describe 'spiral_access' do
     should_see [[1,2],[4,3]], [1,2,3,4]
   end
   
-  
+  # updated the spec to be a box from 1-9
   it 'should yield 1,2,3,4,5,6 when given [[1,2,3],[8,9,4],[7,6,5]]' do
-    should_see [[1,2,3],[6,5,4]], [1,2,3,4,5,6]
+    should_see [[1,2,3],[8,9,4],[7,6,5]], [1,2,3,4,5,6,7,8,9]
   end
     
   it 'should fit the example given in the notes' do

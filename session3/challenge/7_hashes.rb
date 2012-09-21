@@ -1,5 +1,6 @@
 # This challenge is based off of problem 1
-# modify it such that it also accepts in the hash, a color (whose values are red("#FF0000"), green("#00FF00"), and blue(#0000FF) )
+# modify it such that it also accepts in the hash, a color 
+# (whose values are red("#FF0000"), green("#00FF00"), and blue(#0000FF) )
 # if the color is set, then it should show up in the style
 # It should also not be necessary to pass in the hash, if you don't want to specify options
 #
@@ -32,21 +33,36 @@ class HTMLTag
     :monospace    => '"Courier New", "Lucida Console"' 
   }
   
+  COLORS = {
+    :red          => '#FF0000'  , 
+    :green        => '#00FF00'  , 
+    :blue         => '#0000FF'
+  }
+
   attr_accessor :name , :innerHTML , :options
   
   # options: :multiline should be true or false
-  def initialize(name,innerHTML,options)
+  def initialize(name,innerHTML,options={})
     @name , @innerHTML , @options = name , innerHTML , options
   end
   
+  # seems messy with 2 option methods, consider just a style method and checking options @ Init like the solution
   def font
+    return nil unless options[:font]
     font = options[:font]  #  one of :serif , :sans_serif , or :monospace
-    FONTS[font]
+    "font-family:#{FONTS[font]}"
+  end
+
+  def color
+    return nil unless options[:color]
+    color = options[:color]
+    "color:#{COLORS[color]};"
   end
 
   def style
-    return nil unless options[:font]
-    "style='font-family:#{font}'"
+    return nil unless options[:font] || options[:color]
+    semicolon = if options[:font] && options[:color] then ";" else "" end
+    "style='#{font}#{semicolon}#{color}'"
   end
   
   def to_s

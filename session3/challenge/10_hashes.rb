@@ -28,6 +28,12 @@
 #
 # create it from scratch :)
 
+              
+def pathify(dir)
+# takes a hash of hashes/arrays in the form
+# 'folder' => { 'folder' => [file, file, file], 'folder' => { 'folder' => [file] } }
+#     k      v      k      v   0    1     2        k       v     k       v 0    
 
-def pathify
+
+
 end
