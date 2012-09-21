@@ -29,11 +29,41 @@
 # create it from scratch :)
 
               
-def pathify(dir)
-# takes a hash of hashes/arrays in the form
-# 'folder' => { 'folder' => [file, file, file], 'folder' => { 'folder' => [file] } }
-#     k      v      k      v   0    1     2        k       v     k       v 0    
+# Notes--
+# I had to peek at the solution to wrap my head around recursion but then
+# built up my solution from scratch based on the logic.. moral victory!
 
+# strategy:
+# recurse (1) hash->hash->files, (2) hash->files, (3) hash->hash->hash->files
+# return => [(1) /dir/dir/file, (1) /dir/dir/file ... (3) dir/dir/dir/file]
+# each file is an array element with the full parent path
+# length of the array is the # of all files found
+# recurse to build a parent path and then add all files with the parent path
 
+# ex 'opt' => { 'local' => { 'bin' => ['sqlite3','rsync'] } }
+def pathify(dirs)
 
+# the final element inspected will be an array of files
+# return an array of formatted files to append to the parent path string
+
+return dirs.map { |file| "/" + file } if dirs.is_a? Array
+# => ['/sqlite3', '/rsync']
+
+paths = Array.new
+dirs.each do |parent, child|
+	parent_path = '/' + parent 	# create a parent path for each hash
+								# /opt /local /bin
+	child_path = pathify(child) # recurse to get to the files
+								# this will be the formatted file array above
+								# and return an array: 
+	child_path.each do |file|
+		paths << parent_path + file  	#[/bin/sqlite3, /bin/rsync]
+										#[/local/bin/sqlite3, /local/bin/rsync]
+										#etc
+		end									
+	end
+return paths
 end
+
+# recursion is pretty great, 
+# think backwards!

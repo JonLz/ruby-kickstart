@@ -28,7 +28,10 @@
 #     i * -5
 #   end
 # end
-
-
-def array_init
+def array_init(size = 5, &block)
+  if block_given?
+    ary = Array.new(size) { |i| block.call i}
+	else
+		arr = Array.new(size) { |i|(i * 100).to_s }
+	end
 end
