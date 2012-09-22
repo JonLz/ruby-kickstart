@@ -38,7 +38,7 @@
 # Build an array of data based on a hashed linked list by recursing through the list
 def link_to_array(head)
 	to_ret = Array.new
-	to_ret << head[:data] if head[:next] == nil
+	return head[:data] if head[:next] == nil
 	if head[:next].is_a? Hash then 
 		to_ret << head[:data]
 		to_ret << link_to_array(head[:next])
@@ -48,6 +48,7 @@ end
 
 # Return the middle value of the arrayified linked list
 def middle(head)
+	return head[:data] if head[:next] == nil
 	list = link_to_array(head)
 	middle = list.length / 2
 

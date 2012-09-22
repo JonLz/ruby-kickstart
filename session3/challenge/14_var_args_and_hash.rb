@@ -31,11 +31,40 @@
 # same_ends 3, 5, 6, 45, 99, 13, 5, 6    # => false
 
 
-def problem_14
+def problem_14(*args)
+	hash = if args[-1].is_a? Hash then args.pop else nil end
+	problem = if hash then hash[:problem].to_s else "count_clumps" end
+
+	return same_ends(args[0], args[1..(args.length-1)]) if problem == "same_ends"
+	return count_clumps(args) if problem == "count_clumps"
 end
 
-def same_ends
+def same_ends(n,*args)
+	return true if n == 0
+	args = args.flatten
+	args[0..n-1] == args[(args.length-n)..(args.length)]	
 end
 
-def count_clumps
+def count_clumps(*args)
+	args = args.flatten
+	#[1,1,2,1,1]
+	count = Array.new
+	a = Array.new
+	args.each_with_index do |val, idx|
+	      if idx == 0 then next
+	      elsif val == args[idx-1]
+		a << val
+		count << a if a.length >> 0 && idx == args.length - 1
+	      elsif val != args[idx-1]
+		count << a if a.length > 0
+		a = Array.new
+	      end
+	end
+	count.length
 end
+
+
+#p problem_14(2,5,6,45,99,13,5,6, {:problem => :same_ends})
+#p problem_14(1,1,1,1,4,4,4,3,3,1,7,8,8, {:problem => :count_clumps})
+#p problem_14(1,1,2,1,1)
+

@@ -44,8 +44,8 @@ end
 #non-recursive solution
 def non_recurse (list)
 	while list
-	  puts list[:data]
-	  list = list[:next]
+		puts list[:data]
+		list = list[:next]
 	end
 end
 

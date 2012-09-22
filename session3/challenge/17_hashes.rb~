@@ -19,7 +19,7 @@ def link_to_array(head)
 	to_ret.flatten
 end
 
-def print_list_in_reverse(head)
+def print_list(head)
 	link_to_array(head).reverse.each { |v| puts v }
 end
 
