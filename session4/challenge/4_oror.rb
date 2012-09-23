@@ -8,5 +8,6 @@
 # first_object nil, 1, 2      # => 1
 # first_object nil, nil, nil  # => nil
 
-def first_object
+def first_object(obj1,obj2,obj3)
+	ret = obj1 || obj2 || obj3 || nil
 end

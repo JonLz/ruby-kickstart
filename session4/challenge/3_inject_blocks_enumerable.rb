@@ -25,5 +25,10 @@
 #   The method then returns 45
 #
 
-def passthrough
+def passthrough(enum_obj, init, &block)
+	accum = init
+	enum_obj.each do |num|
+		accum = yield accum, num
+	end
+	accum
 end

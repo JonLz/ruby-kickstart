@@ -25,7 +25,14 @@
 # HINT: 
 #   The concat method will do the same thing as the << method
 
-class ApplicationController  
-  def body_class
-  end
-end
+# 
+
+   controller = ApplicationController.new
+   controller.body_class                 # => ""
+   controller.body_class << 'admin'
+   controller.body_class                 # => "admin"
+   controller.body_class << 'category'
+   controller.body_class                 # => "admin category"
+   controller.body_class << 'page' << 'order'
+   controller.body_class                 # => "admin category page order"
+

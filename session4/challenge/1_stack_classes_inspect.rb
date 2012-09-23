@@ -41,6 +41,21 @@ class Stack
   end
   
 end
+
+class Stack
+	def inspect
+	#(3)2)1)
+	data = "("
+	pos = @head
+	while pos != nil
+		data += pos.data.inspect + ")"
+		pos = pos.next_node
+	end
+	if data == "(" then data += ")" end
+	data
+	end
+end
+
 stack = Stack.new
 stack.push 1
 stack.push 2
@@ -58,13 +73,7 @@ stack = Stack.new
 stack.push 1
 stack.push 2
 stack.push 3
-stack # =>  (3)2)1)
-
-
-
-class Stack
-  # **define the inspect method here**
-end
+p stack # =>  (3)2)1)
 
 
 
