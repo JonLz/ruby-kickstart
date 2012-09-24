@@ -27,12 +27,20 @@
 
 # 
 
-   controller = ApplicationController.new
-   controller.body_class                 # => ""
-   controller.body_class << 'admin'
-   controller.body_class                 # => "admin"
-   controller.body_class << 'category'
-   controller.body_class                 # => "admin category"
-   controller.body_class << 'page' << 'order'
-   controller.body_class                 # => "admin category page order"
+class ApplicationController
+
+	def body_class
+	unless @body_class
+		@body_class = String.new
+		class << @body_class
+			def <<(str)
+				concat ' ' unless length == 0
+				concat str
+			end
+		end
+	end
+	@body_class
+	end
+end
+
 
