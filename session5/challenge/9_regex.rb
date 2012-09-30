@@ -31,4 +31,41 @@
 #   </html>
 
 def trees_to_html(trees)
+	require File.dirname(__FILE__) + '/7_regex'
+  
+  # the first part of the html skeleton
+  result = '
+  <!doctype html>
+  <html>
+    <head><title>Green Thumb Nursery</title></head>
+    <body>
+      <h1>Catalog</h1>
+      <table>
+        <tr>
+          <td>Type of tree</td>
+          <td>Size of the tree</td>
+          <td>Price of the tree</td>
+        </tr>
+  '
+  
+  # for each record, add it to the html
+  # the each uses each element from the array for each line as a value
+  tree_parser(trees).each do |type, size, price|
+    result << "
+      <tr>
+        <td>#{type}</td>
+        <td>#{size}</td>
+        <td>#{price}</td>
+      </tr>
+    "    
+  end
+  
+  # close off the html
+  result << '
+      </table>
+    </body>
+  </html>
+  '
+  
+  result
 end

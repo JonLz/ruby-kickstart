@@ -47,4 +47,23 @@
 # Student.new(30,:sophmore) >= Student.new(20,:freshman)  # => true
 
 module OperatorGeneratorFromSpace
+	def < (compare)
+		(self <=> compare) < 0
+	end
+
+	def > (compare)
+		(self <=> compare) > 0
+	end
+
+	def == (compare)
+		(self <=> compare) == 0
+	end
+
+	def <= (compare)
+		!(self > compare)
+	end
+
+	def >= (compare)
+		!(self < compare)
+	end
 end

@@ -33,4 +33,11 @@
 # 
 
 def tree_parser(trees)
+	results = Array.new
+	trees.each_line do |line|
+		/^([A-Za-z ]+)[,;] which ships (at|@) ([0-9] to [0-9] feet), cost:? (\$.+)$/i =~ line
+		results << [$1, $3, $4]
+	end
+
+	results
 end
