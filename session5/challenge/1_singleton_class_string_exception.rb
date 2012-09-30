@@ -26,5 +26,37 @@
 
 class ApplicationController  
   def body_class
+    if @body_class.nil? then
+      @body_class = String.new
+    
+      class << @body_class
+
+	  def <<(str)
+	    return self if self[/\b#{str}\b/]
+	    concat ' ' unless length == 0
+	    concat str
+	  end
+
+	  def +(str)
+	    raise_exception
+	  end
+
+	  def *(str)
+	    raise_exception
+	  end
+
+	  def []=(o,n)
+	    raise_exception
+	  end
+
+	  def raise_exception
+	    raise RuntimeError.new("use << method instead")
+	  end
+      end
+
+    end
+    @body_class
   end
 end
+
+

@@ -22,5 +22,30 @@
 # ff.max                        # => 5
 # ff.min                        # => 1
 # ff.select { |num| num.odd? }  # => [1, 5, 3]
+class List
+	
+	include Enumerable
 
+	def initialize
+		@list = Array.new
+	end
+
+	def inspect
+	str = "#<List: "
+	each { |num| str << "#{num.inspect}, " }
+	str.sub!(/, $/, '')
+	str << '>'
+	str
+	end
+
+	def <<(num)
+		@list << num
+		self
+	end
+
+	def each(&block)
+		@list.each &block
+	end
+
+end
 
